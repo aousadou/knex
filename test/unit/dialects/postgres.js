@@ -88,6 +88,7 @@ describe('Postgres Unit Tests', function () {
   it('Validates searchPath as Array/String', function () {
     const knexInstance = knex({
       client: 'pg',
+      connection: {},
     });
 
     expect(function () {
@@ -144,5 +145,15 @@ describe('Postgres Unit Tests', function () {
       );
       knexInstance.destroy();
     });
+  });
+
+  it('Throw Error if connection object not set', () => {
+    const constructKnex = () => {
+      knex({
+        client: 'pg',
+      });
+    };
+
+    expect(constructKnex).to.throw(Error);
   });
 });

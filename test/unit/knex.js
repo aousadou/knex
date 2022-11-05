@@ -43,6 +43,7 @@ describe('knex', () => {
     expect(() => {
       Knex({
         client: 'mysql',
+        connection: {},
       });
     }).not.to.throw();
   });
@@ -51,6 +52,7 @@ describe('knex', () => {
     expect(() => {
       Knex({
         client: 'sqlite',
+        connection: {},
       });
     }).not.to.throw();
   });
@@ -58,6 +60,7 @@ describe('knex', () => {
   it('supports creating copy with userParams', () => {
     const knex = Knex({
       client: 'sqlite',
+      connection: {},
     });
 
     const knexWithParams = knex.withUserParams({ userParam: '451' });
@@ -71,6 +74,7 @@ describe('knex', () => {
   it('supports passing user params in config', () => {
     const knexWithParams = Knex({
       client: 'sqlite',
+      connection: {},
       userParams: {
         userParam: '451',
       },
@@ -85,6 +89,7 @@ describe('knex', () => {
   it('migrator of a copy with userParams has reference to correct Knex', () => {
     const knex = Knex({
       client: 'sqlite',
+      connection: {},
     });
 
     const knexWithParams = knex.withUserParams({ userParam: '451' });
@@ -98,6 +103,7 @@ describe('knex', () => {
     const knex = Knex({
       client: 'sqlite',
       connection: ':memory:',
+      connection: {},
     });
     const knexWithParams = knex.withUserParams();
 
@@ -120,6 +126,7 @@ describe('knex', () => {
     const knex = Knex({
       client: 'sqlite',
       connection: ':memory:',
+      connection: {},
     });
     const onQueryResponse = function (response, obj, builder) {};
     expect(knex.listeners('query-response').length).to.equal(0);
@@ -137,6 +144,7 @@ describe('knex', () => {
     const knex = Knex({
       client: 'sqlite',
       connection: ':memory:',
+      connection: {},
     });
     let queryResponseWasPropagated = false;
     let queryWasPropagated = false;
@@ -166,6 +174,7 @@ describe('knex', () => {
     const knex = Knex({
       client: 'sqlite',
       connection: ':memory:',
+      connection: {},
     });
     let queryResponseWasPropagated = false;
     let queryWasPropagated = false;
@@ -195,6 +204,7 @@ describe('knex', () => {
     const knex = Knex({
       client: 'sqlite',
       connection: ':memory:',
+      connection: {},
     });
 
     expect(knex.client.listeners('start').length).to.equal(1);
@@ -220,6 +230,7 @@ describe('knex', () => {
     const knex = Knex({
       client: 'sqlite',
       postProcessResponse: noop,
+      connection: {},
     });
 
     const knexWithParams = knex.withUserParams();
@@ -331,6 +342,7 @@ describe('knex', () => {
     const knex = Knex({
       client: 'sqlite',
       postProcessResponse: noop,
+      connection: {},
     });
 
     const knexWithParams = knex.withUserParams();
